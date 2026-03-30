@@ -8,4 +8,4 @@ L'ONM centralise à l'échelle nationale les données d'observations de mammifè
 L'ONM a également en charge la validation de l'ensemble des données selon le [guide méthodologique](https://observatoire-mammiferes.fr/static/docs/ONM_Validation_Guide%20methodologique.pdf) élaboré.
 
 Ce dépot décrit le moteur PostgreSQL développé pour la validation automatique des observations. Il est constitué d'une [notice technique](/Notice%20technique%20-%20Validation%20automatique%20ONM.pdf) ainsi que les codes des différentes focnctions utilisées.
-Ce moteur de validation est distinct de GeoNature cependant il puise les données dans certaines tables de GeoNature comme la synthese et utilise certaines fonctionnalités comme les listes taxonomiques.
+Ce moteur de validation est distinct de GeoNature cependant il puise les données dans certaines tables de GeoNature comme la synthese ou l'historique des validations et utilise certaines fonctionnalités comme les listes taxonomiques.
