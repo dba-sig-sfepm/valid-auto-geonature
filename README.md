@@ -9,3 +9,5 @@ L'ONM a également en charge la validation nationale de l'ensemble des données 
 
 Ce dépot décrit le moteur PostgreSQL développé pour la validation automatique des observations. Il est constitué d'une [notice technique](/Notice%20technique%20-%20Validation%20automatique%20ONM.pdf) ainsi que les codes des différentes fonctions utilisées.
 Ce moteur de validation est distinct de GeoNature cependant il puise les données dans certaines tables de GeoNature comme la synthese ou l'historique des validations et utilise certaines fonctionnalités comme les listes taxonomiques.
+
+Le travail s'est concentré pour l'instant sur le moteur de calcul et d'intégration des validations. Il est envisagé dans un second temps de développer une interface d'utilisation de ce moteur permettant de choisir le périmètre et les paramêtres de validation afin d'en faciliter son utilisation. 
