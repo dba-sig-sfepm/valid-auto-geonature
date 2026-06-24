@@ -2,7 +2,7 @@
 
 Moteur de validation automatique des données de l'ONM (Observatoire National des Mammifères) de la SFEPM
 
-<img src="https://ressources.observatoire-mammiferes.fr/files/asset/c4c8df9fd8924f334984966317889c14612d702c.png" alt="Logo ONM / SFEPM" width="800">
+<img src="https://observatoire-mammiferes.fr/static/custom/images/image_intro.jpg" alt="Logo ONM / SFEPM" width="800">
 
 L'ONM centralise à l'échelle nationale les données d'observations de mammifères (Métropole et Outre-mer). La gestion des données s'appuie sur l'application [GeoNature](https://github.com/PnX-SI/GeoNature).   
 L'ONM a également en charge la validation nationale de l'ensemble des données de Mammifères selon le [guide méthodologique](https://observatoire-mammiferes.fr/static/docs/ONM_Validation_Guide%20methodologique.pdf) élaboré par l'ONM et ses partenaires.
