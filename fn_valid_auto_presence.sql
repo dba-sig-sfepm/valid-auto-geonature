@@ -9,6 +9,7 @@ DECLARE
     v_table_name     text;
     v_schema_name    text := 'valid_auto';  
     v_area_type      integer;
+	v_cd_ref bigint;
 BEGIN
     -- Construire dynamiquement le nom de la table de référence
     --    ex : ref_periode_chiro_metro, ref_identification_..., etc.
@@ -22,6 +23,11 @@ BEGIN
 
     -- Calcul de la note de présence
     BEGIN
+		SELECT taxonomie.find_cdref_es(cd_nom)
+		INTO v_cd_ref
+		FROM gn_synthese.synthese
+		WHERE id_synthese = p_id_synthese;
+
         EXECUTE format($sql$
 		    SELECT
 		        CASE
@@ -31,8 +37,8 @@ BEGIN
 		        END AS note_presence,
 		        jsonb_build_object(
 		            'cd_nom', s.cd_nom,
-		            'cd_ref_es', taxonomie.find_cdref_es(s.cd_nom),
-		            'presence_values', jsonb_agg(DISTINCT rp.note_presence),
+		            'cd_ref_es', $5,
+		            'presence_values', array_agg(DISTINCT rp.note_presence),
 					'area_code', jsonb_agg(DISTINCT rp.area_code),
 					'territoire', $3,
 					'groupe', $4
@@ -40,7 +46,7 @@ BEGIN
 		    FROM gn_synthese.synthese s
 		    JOIN gn_synthese.cor_area_synthese c ON s.id_synthese = c.id_synthese
 		    JOIN ref_geo.l_areas la ON la.id_area = c.id_area AND la.id_type = $2
-		    JOIN %I.%I rp ON rp.area_code::text = la.area_code::text AND rp.cd_ref = taxonomie.find_cdref_es(s.cd_nom) and rp.code_territoire = $3
+		    JOIN %I.%I rp ON rp.area_code::text = la.area_code::text AND rp.cd_ref = $5 and rp.code_territoire = $3
 		    WHERE s.id_synthese = $1 AND s.id_nomenclature_observation_status = 84
 			GROUP BY s.id_synthese, s.cd_nom
         $sql$, v_schema_name, v_table_name)
@@ -48,7 +54,7 @@ BEGIN
             v_result.note,
             v_result.details
         USING
-            p_id_synthese, v_area_type, p_code_territoire, p_code_liste;
+            p_id_synthese, v_area_type, p_code_territoire, p_code_liste, v_cd_ref;
 
     EXCEPTION
         WHEN undefined_table THEN
